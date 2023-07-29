@@ -1,0 +1,355 @@
+                                         --------------Temporal Deadzone(TDZ)-
+It occurs between declaration and initialisation.
+
+-------Temporal Dead Zone explained--------------
+This is what the TDZ is: the term to describe the state where variables are un-reachable.
+They are in scope, but they aren't declared.
+
+The let and const variables exist in the TDZ from the start of their enclosing scope until they are declared.
+
+Ex---
+console.log(varNumber); // undefined
+console.log(letNumber); // Doesn't log, as it throws a ReferenceError letNumber is not defined
+
+var varNumber = 1;
+let letNumber = 1;
+
+NOTES:- 
+The only difference between const and let is that when they are hoisted, their values don't get defaulted to undefined.
+
+When variables get hoisted, var gets undefined initialized to its value by default in the process of hoisting. let and const also get hoisted, but don't get set to undefined when they get hoisted.
+
+And that's the sole reason we have the TDZ. Which is why it happens with let and const but not var.
+
+How to avoid the issues the TDZ causes?
+Relatively simply, always make sure you define your lets and consts at the top of your scope.
+
+
+                                         -------------Hoisting--------------
+hoisting allows you to use functions and variables before they're declared. 
+
+
+Fully hoisting- 
+ex-normal Function  
+hello();
+function hello(){
+   //statements
+}
+notes- fat arrow doesn't allow because it save into the variables, and we know variables are not fully hoisted and let and const
+are not even partially hoisted because they belong to TDZ.
+
+partially hoisting- ex- variables like Global scope- var
+
+Local scope- let, const  :- they don't allow hoisting.
+
+                     -------------------------data types in JavaScript-------------------------
+
+Mutable (reference, non primitive)- ex- Array, objects and functions
+It copies the actual data, so that when we make any changes in the array then the real data will be secured, i.e will not change
+the original data.
+It's is good to use in industry or in work.
+
+immutable(non-reference or primitive)-  Number, String, boolean, undefined, Null.
+It will copy the reference, when we change the data the given array then actual data will also change.
+That's why it is not good to use in industry 
+
+                       -------------------Normal vs fat arrow function------------------
+
+Normal func:-
+ A function that has lots of unwanted things which makes our code less efficient
+Ex- function hello(){
+      Console.log (arguments)
+//Without passing the argument it will have argument and lots of unwanted things inside.
+}
+hello();
+
+Fat arrow: - 
+ A function that has no any unwanted things which makes our program more efficient
+That's why we programmer always prefer fat arrow function.
+
+ex-  const hello=()=>{
+    console.log(arguments);  //it will not have any argument without passes any parameters,  error: arguments is not defined
+}
+hello();
+
+Array and obj
+Var a=[ ]
+
+                         ----------For identifying array and obj-----------------
+
+ Array.isArray(a) //it will tell that given variable is an array or a object.
+
+   For -ve index   a.at(-2)
+
+                         -------------For deleting array elements-------------
+
+Pop unshift and splice
+
+notes:- 
+All the methods of array is mutable method, That is, it will change the original data.
+
+Ex- push pop shift unshift splice etc
+
+Var arr=[1,2,3  ]
+Var brr= arr
+brr.push(4)
+Console.log(arr)
+Console.log(brr)....both will have same output.
+
+//                     --------------Shallow copy-----------
+
+use for not to change original data after manipulation.
+ex:-
+Var arr=[1,2,3]
+Var brr= [...arr] //spread operator will not allow to change in original data and this copy is known as shallow copy.
+brr.push(4)
+Console.log(arr) // it will have original data.
+Console.log(brr) // it will have manipulated data.
+
+//Deep copy
+
+To study
+Shallow copy and deep copy
+Need to revise spread operator 
+
+                --------------------For iterating array--------------
+
+ForEach:-
+ good for traverse (for read all the elements of data structures).
+But for manipulating elements it's not good.
+Will not allow to make any changes in original array.
+var arr=[1,2,3,4,5];
+arr.forEach(function(elem){
+  console.log(elem*2)
+})
+console.log(arr);
+
+since it does't give the copy of iterated elements in the new array, for that have to do externally.
+var arr=[1,2,3,4,5];
+var copy=[]
+arr.forEach(function(elem){
+  copy.push(elem*2)
+})
+console.log(copy);
+console.log(arr)
+
+ for of- good for manipulation 
+For( var i 
+
+Map():-
+ for not change in original array after performing any operation 
+Mapping - use for traversing
+it saves the iterated elements in to the imagenary array. simply we can save in new variables to get output in array form.
+Ex- var arr=[1,2,3,4,5];
+var newArray=arr.map(function(elem){
+  return elem*2
+})
+console.log(newArray)
+console.log(arr)
+
+
+Filter -
+same as mapping, just it will take the condition.
+use for traversing, elemination
+Ex- var arr=[1,2,3,4,5]
+const b=arr.filter((e)=>{
+  return e!=3;
+})
+console.log(b)
+
+Destructuring- used for destructuring the array elements.
+Ex-
+var arr=[1,2,3,4]
+Let [a,b,c,d]=arr;
+
+For skipping any elements use extra comma.
+Let [a,b, ,c,d]=arr;    the element just after 2nd position will skipped.
+
+Spread operator with object
+
+Rest operator -Variable length of parama/args
+
+Hoisting-
+Fully hoisting- ex-normal Function
+partially hoisting- ex- variables
+Local scope- let, const
+Global scope- var
+
+Mutable (reference, non primitive)-
+It copies the actual data, so that when we make any changes then the real data will be secured.
+It's is good to use in industry or in work
+
+immutable(non-reference or primitive)-
+It will copy the reference, when we change the data the actual data will also change
+That's why it is not good to use in industry 
+
+                    ----------------Normal vs fat arrow function-------------- :
+
+Normal func- A function that has lots of unwanted things which makes our code less efficient
+Ex- function hello(){
+      Console.log (argument)
+//Without passing the argument it will have argument.
+}
+
+Fat arrow - a function that has no any unwanted things which makes our program more efficient
+That's why we programmer always prefer fat arrow function 
+
+Array and obj
+Var a=[  ]
+For identifying array and obj
+Array.isArray(a)
+
+For -ve index   a.at(-2)
+
+For deleting array elements
+Pop unshift and splice
+
+All the methods of array is mutable method
+That is, it will change the original data.
+Ex- push pop shift unshift splice etc
+
+Var arr=[1,2,3  ]
+Var brr= arr
+brr.push(4)
+Console.log(arr)
+Console.log(brr)....both will have same output.
+
+//Shallow copy 
+For not to change
+Var arr=[1,2,3  ]
+Var brr= [...arr] //spread operator will not allow to change in original data and this copy is known as shallow copy.
+brr.push(4)
+Console.log(arr)
+Console.log(brr)
+
+//Deep copy
+
+
+To study
+Shallow copy and deep copy
+Need to revise spread operator 
+
+
+Destructuring- used for destructuring the array elements.
+Ex-
+var arr=[1,2,3,4]
+Let [a,b,c,d]=arr;
+
+For skipping any elements use extra comma.
+Let [a,b, ,c,d]=arr;    the element just after 2nd position will skipped.
+
+                   ------------------Spread operator with object----------------
+
+
+//without spread operator if we manipulate data then original will also get change.
+var person={
+  name:"Shahid",
+  username:"@Shahid",
+  skill:"full stack",
+}
+
+var profile=person
+profile.name="Afridi"
+console.log(profile)
+console.log(person)
+
+//with spread operator if we manipulate data then original will not change.
+var person={
+  name:"Shahid",
+  username:"@Shahid",
+  skill:"full stack",
+}
+
+var profile={...person}
+profile.name="Afridi"
+console.log(profile)
+console.log(person)
+
+
+
+
+
+Rest operator:-
+  //use for Variable length of parama/args
+  //use the (...) in the param of function for applying rest operator.
+ex:-
+//without rest operator can not pass more than one argument if we have passed single parameter.
+function hello(a){
+  console.log(a)
+}
+hello(2,3,4,5) //output-2
+
+//with rest operator can pass more than one argument if we still have passed single parameter.
+function hello(...a){
+  console.log(a)
+}
+hello(2,3,4,5) //output-2,3,4,5
+
+
+                                               ----------------------22/07/2023------------------------
+
+JAVASCRIPT is a single threaded synchronous programming language.
+All the javascript asynchronous features are handled by web API like STO, STI, DOM, Ajax.
+
+
+//processor and process
+
+                                          -------------------//Exception Handling------------------------
+
+
+Exception can be... Syntax, user and server error.
+
+compiler check the syntactical error.
+Javascript engine use JIT compiler to compile the JS code.
+
+Interpreter read the code one by one to check the user's error.
+
+
+                                         --------------------//Error handling in sync code-------------------
+
+Error handling in synchronous code is done with the try-catch block and in asynchronous code, we handle errors with the help of catchError ()
+
+Ex-
+        let a=12
+        let b=12
+        console.log(c) //error, because c is not defined and will not execute the rest codes, that's where we use try and catch.
+  
+        console.log("hello world"); // this code will not execute if we get any error.
+
+                                         -----------------------try and catch--------------------
+ 
+  The code which may have possiblity to give error must write inside the try block.
+  If the code inside the try block have any error then catch block will run.
+  Catch block will tell the name of error
+ Ex-
+    try{
+        let a=12
+        let b=12
+        console.log(c);// c is not defined so catch will run.
+       }catch(error){
+             console.log(error); //will tell the error name
+        }
+    
+     console.log("hello world");  //this code will also execute.
+
+
+                                           ------------------// custom error---------------------
+
+  When we want to generate error in our code by self, that's where we use throw keyword to handle those errors.
+
+ Ex-
+     try{
+        let a=12
+        let b=12
+        let c=a+b;
+        if(c%2===0){
+             throw Error("Even is not defined")
+        }
+         console.log(c);
+         console.log("hello");
+       }
+       
+       catch(error){
+             console.log(error.name); //will tell the error name
+        }
+    
